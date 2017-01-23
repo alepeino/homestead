@@ -20,6 +20,8 @@ sites:
 databases:
     - homestead
 
+natdnshostresolver: off
+
 # blackfire:
 #     - id: foo
 #       token: bar

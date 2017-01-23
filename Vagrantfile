@@ -17,6 +17,11 @@ require File.expand_path(File.dirname(__FILE__) + '/scripts/homestead.rb')
 Vagrant.require_version '>= 1.8.4'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    #https://github.com/mitchellh/vagrant/issues/8056
+    config.vm.provider "virtualbox" do |vb|
+        vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+    end
+
     if File.exist? aliasesPath then
         config.vm.provision "file", source: aliasesPath, destination: "/tmp/bash_aliases"
         config.vm.provision "shell" do |s|
